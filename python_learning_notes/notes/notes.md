@@ -169,3 +169,125 @@ print (result)
 逻辑运算符  
 复合赋值运算符  
 赋值运算符
+
+# 第3章 流程控制
+## 1.条件语句
+- if语句
+```python
+score = 88
+if score >= 60:
+    print("考试及格！")
+```
+- if-else语句
+```python
+score = 88
+if score >= 60:
+    print("考试及格！")
+else:
+    print("考试不及格！")
+```
+- if-else-elif语句
+```python
+score = 88
+if score >= 85:
+    print("优秀")
+elif 75 <= score < 85:
+    print("良好")
+elif 60 <= score < 75:
+    print("中等")
+else:
+    print("差")
+```
+- if嵌套
+```python
+year = 2024
+month = 2
+if month in [1,3,5,7,8,10,12]:
+    print(f"{month}月有31天")
+elif month in [4,6,9,11]:
+    print(f"{month}月有30天")
+elif month == 2:
+    if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+        print(f"{year}年{month}月有29天")
+    else:
+        print(f"{year}年{month}月有28天")
+```
+## 2.循环语句
+- while语句
+```python
+i= 1
+result = 0
+while i <= 10:
+    result += i
+    i += 1
+print(result)
+```
+- for语句，实现遍历循环
+```python
+for word in "Python":
+    print(word)
+```
+range()函数，控制循环中代码的执行次数
+```python
+for i in range(5):  # 输出0-4
+    print(i)
+```
+```python
+for i in range(5,9):  # 输出5-8
+    print(i)
+```
+- while循环嵌套
+```python
+i = 1
+while i < 6:
+    j = 0
+    while j < i:
+        print("*",end='')
+        j += 1
+    print()
+    i += 1
+```
+- for循环嵌套
+```python
+for i in range(1,7):
+    for j in range(i):
+        print('*',end='')
+    print
+```
+## 3.跳转语句
+- break语句
+```python
+for word in 'Python':
+    if word == 'o':
+        break
+    print(word,end='')
+```
+- continue语句
+```python
+for word in 'Python':
+    if word == 'o':
+        continue
+    print(word,end='')
+```
+
+# 第4章 字符串控制
+掌握字符串的定义方式,能够根据需求准确定义字符串
+掌握格式化字符串的方式,能够通过%、format()或 f-string 格式化字符串
+掌握字符串的查找与替换,能够通过 find()和 replace()方法实现字符串的查找与替换操作
+掌握字符串的分割与拼接,能够通过 split)和 join()方法或者运算符+实现字符串的
+分割与拼接操作
+熟悉删除字符串的指定字符的方式,能够通过 strip)、Istrip()和 rstrip()方法删除字
+符串的指定字符
+掌握字符串的大小写转换,能够实现字符串的大小写转换操作
+熟悉字符串的对齐,能够通过 center()、ljust()、rjust()方法实现字符串的对齐
+## 1.字符串
+- 字符串是由一系列字符组成的不可变序列，使用单引号、双引号、三引号定义字符串
+- 转义字符  
+`\b`，退格符，用于删除光标前面的一个字符  
+`\n`，换行符  
+`\v`，纵向制表符  
+`\t`，横向制表符  
+`\r`，回车符，用于将光标移至当前行的起始位置
+`print('转义字符中:\n 表示换行;\r 表示回车;\b 表示退格')`  
+转义字符中:  
+表示回车表示退格  # “表示回车”到了行首；“表示换行;”被覆盖了；“表示回车”和“表示退格”之间的“;”消失了
