@@ -3,10 +3,10 @@ import turtle as t
 def draw_fiveStars(leng):
     count=1
     while count <=5:
-        t.forward(leng)#向前走指定的像素
-        t.right(144)#想右转144
+        t.forward(leng)
+        t.right(144)
         count +=1
-    leng +=10#设置五角星的大小
+    leng +=10
     if leng <=100:
         draw_fiveStars(leng)
 def main():
