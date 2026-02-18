@@ -7,10 +7,10 @@ pricedict = {
 subtotal = []
 items = []
 while True:
-    merchandise = input("请输入商品名：")
+    merchandise = input("请输入商品名(直接Enter退出)：")
     if not merchandise:
         break
-    quantity = input("请输入数量：")
+    quantity = input("请输入数量(直接Enter退出)：")
     if not quantity:
         break
     quan_float = float(quantity)

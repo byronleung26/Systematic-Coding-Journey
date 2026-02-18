@@ -919,10 +919,9 @@ JSON 格式的数据遵循以下语法规则:
 通过对象名访问对象的属性和调用对象的方法  
 `对象名.属性名`  
 `对象名.方法名(参数1, 参数2, ...)`
-## 2.类的成员
-- 属性  
-属性用于表示类所拥有的状态或特征  
-类属性指的是定义在类内部、方法外部的属性：共享性；持久性；便携性  
+## 2.属性  
+- 属性用于表示类所拥有的状态或特征  
+- 类属性指的是定义在类内部、方法外部的属性：共享性；持久性；便携性  
     ```python
     class Car:
         wheels = 4
@@ -936,21 +935,442 @@ JSON 格式的数据遵循以下语法规则:
     print(Car.wheels)
     print(car.wheels)
     ```
-实例属性指的是在方法内部通过`self.属性名`定义的属性
-## 3.特殊方法
-## 4.封装
-## 5.继承
-## 6.多态
-## 7.运算符重载
+- 实例属性指的是在方法内部通过`self.属性名`定义的属性，通常定义在构造方法中，也可以定义在其他方法中  
+    (1)访问实例属性  
+    ```python
+    class Car:
+        def drive(self):
+            self.wheels = 4
+    car = Car()
+    car.drive()
+    print (car.wheels)
+    print (Car.wheels)
+    ```
+    (2)修改实例属性  
+    ```python
+    class Car:
+        def drive(self):
+            self.wheels = 4
+    car = Car()
+    car.drive()
+    car.wheels = 6
+    print(car.wheels)
+    ```
+    (3)动态添加实例属性  
+    在类的外部使用对象动态地添加实例属性  
+    ```python
+    class Car:
+        def drive(self):
+            self.wheels = 4
+    car = Car()
+    car.drive()
+    car.color = "红色"
+    print(car.color)
+    ```
+## 3.方法
+- 方法用于描述类的行为和功能
+- 实例方法  
+形似函数,定义在类内部、以self为第一个形参  
+self参数代表对象本身,会在实例方法被调用时自动接收由系统传递的调用该方法的对象  
+实例方法只能通过对象调用  
+在实例方法中可以使用参数self访问实例属性或者调用实例方法
+    ```python
+    class Car:
+        def create_arr(self):
+            self.color = "红色"
+        def drive(self):
+            print("我是实例方法")
+            self.create_arr()
+            print (self.color)
+    car = Car()
+    car.drive()
+    ```
+- 类方法  
+类方法是定义在类内部、使用装饰器@classmethod修饰的方法
+    ```python
+    @classmethod
+    def 类方法名(cls, 参数1, 参数2, ...):
+        方法名
+    ```
+    类方法不依赖于类实例化的对象,这意味着类方法可以在没有创建类的对象的情况下通过类调用。另外,类方法也可以通过对象调用  
+    类方法中可以使用cls访问和修改类属性
+    ```python
+    class Car:
+        wheels = 3
+        @classmethod
+        def stop(cls):
+            print(cls.wheels)
+            cls.wheels = 4
+            print(cls.wheels)
+    car = Car()
+    car.stop ()
+    ```
+- 静态方法  
+静态方法是定义在类内部、使用装饰器@staticmethod修饰的方法  
+    ```python
+    @staticmethod
+    def 静态方法名(参数1, 参数2, ...):
+        方法体
+    ```
+    静态方法没有任何默认参数。它适用于一些与类相关但无须使用类成员的操作,通常是一些独立功能的封装  
+    静态方法可以通过类和对象调用,但实际上不推荐通过对象调用,这是因为静态方法不依赖于对象,它们是属于整个类的,通过对象调用静态方法可能会造成混淆和误解  
+    静态方法中不能直接访问类属性或调用类方法,但可以使用类名访问类属性或调用类方法
+    ```python
+    class Car:
+        wheels = 3
+        @staticmethod
+        def test():
+            print("我是静态方法")
+            print(f"类属性的值为(Car.wheels)")
+    Car.test ()
+    ```
+## 4.私有成员
+- 可以将类的成员设置为私有成员,以限制其只能在类的内部被访问、修改或调用,防止在类的外部随意修改属性或调用方法  
+- 通过在类成员的名称前面添加双下画线_的方式来表示私有成员  
+`__属性名`  
+`__方法名`  
+- 私有成员在类的内部可以直接被访问或调用,而在类的外部不能直接被访问或调用,但可以通过调用类的公有方法的方式进行访问或调用
+    ```python
+    class Car:
+        __wheels = 4
+        def __drive(self):
+            print ("行驶")
+        def test(self):
+            print (f"汽车有{self.__wheels}个车轮")
+            self.__drive()
+    car = Car()
+    print(car.__wheels)
+    car.__drive()
+    car.test()
+    ```
+## 5.特殊方法
+- 构造方法
+构造方法即__init__()方法,是类中定义的特殊方法,用于在创建对象时进行初始化操作,比如给属性赋初始值等
+    ```python
+    def __init__(self, 参数1, 参数2, ...):
+        方法体
+    ```
+    如果调用的构造方法是有参构造方法,那么在创建对象时需要传入相应的参数
+    ```python
+    class Car:
+        def __init__(self, color):
+            self.color = color
+        def drive(self):
+            print(f"车的颜色为:{self.color}")
+    car_one = Car("红色")
+    car_one.drive()
+    car_two = Car("蓝色")
+    car_two.drive()
+    ```
+- 析构方法  
+析构方法即__del__()方法,是销毁对象时系统自动调用的方法
+    ```python
+    class Car:
+        def __init__(self):
+            self.color = "蓝色"
+            print("对象被创建")
+        def __del__ (self):
+            print("对象被销毁")
+    car = Car()
+    print(car.color)
+    del car
+    print(car.color)
+    ```
+## 6.封装
+- 封装的基本思想是将类的细节隐藏起来,只向外部提供用于访问类成员的公开接口。如此,类的使用者无须知道类的实现细节,只需要使用公开接口便可访问类的内容,这在一定程度上保证了类内数据的安全  
+- (1)将属性声明为私有属性  
+- (2)添加两个供外界调用的公有方法,分别用于设置和获取私有属性的值  
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+        self.__age = 1
+    def set_age(self, new_age):
+        if 0 < new_age <= 120:
+        self.__age = new_age
+    def get_age(self):
+        return self.__age
+```
+## 7.继承
+- 继承,可以在不改变原有类的基础上扩展其功能。当一个类继承自另一个类时,被继承的类称为父类或基类,而继承其他类的类称为子类或派生类,子类会自动拥有父类的公有成员
+- 单继承  
+单继承即子类只继承一个父类  
+`class 子类名(父类名)`  
+子类继承父类的同时会自动拥有父类的公有成员。若在定义类时不指明该类的父类,那么该类默认继承基类object  
+子类不会拥有父类的私有成员,也不能访问父类的私有成员
+```python
+class Cat(object):
+    def __init__(self, color):
+        self.color = color
+        self.__age = 1
+    def walk(self):
+        print ("走猫步~")
+    def __test(self):
+        print("我是私有方法")
+class ScottishFold (Cat):
+    pass
+fold = ScottishFold("灰色")
+print(f"(fold.color)的折耳猫")
+fold.walk()
+print(fold.__age)
+fold.__test()
+```
+- 多继承  
+一个类可以继承多个类,如此子类具有多个父类,也自动拥有所有父类的公有成员  
+`class 子类名(父类名1, 父类名2, ...)`  
+    ```python
+    class House(object):
+        def live(self):
+            print("供人居住")
+    class Car(object):
+        def drive(self):
+            print ("行驶")
+    class TouringCar(House, Car):
+        pass
+    tour_car = TouringCar()
+    tour_car.live()
+    tour_car.drive()
+    ```
+    如果子类继承的多个父类是具有平行关系的类,那么子类先继承哪个类,便会先调用哪个类的方法
+- 重写  
+重写从父类继承来的方法，在子类中定义与父类方法同名的方法,在方法中按照子类需求重新编写代码即可  
+    ```python
+    class Person (object):
+        def say_hello(self):
+            print("打招呼!")
+    class Chinese (Person):
+        def say_hello (self):
+            print("吃了吗?")
+    ```
+    子类重写了父类的方法之后,无法直接访问父类的同名方法,但可以使用super()函数间接调用父类中被重写的方法  
+    ```python
+    class Chinese(Person):
+        def say_hello (self):
+            super().say_hell0()
+            print("吃了吗?")
+    ```
+## 8.多态
+- 直接表现是让不同类的同一功能可以通过同一个接口调用,表现出不同的行为
+    ```python
+    class Cat:
+        def shout(self):
+            print("喵喵喵-")
+    class Dog:
+        def shout(self):
+            print("汪汪汪!")
+    def test(obj):
+        obj.shout()
+    cat = Cat()
+    dog = Dog()
+    test(cat)
+    test(dog)
+    ```
+## 9.运算符重载
+- 运算符重载是指赋予内置运算符新的功能,以使其能操作更多的数据类型。当定义一个类时,如果这个类中重写了Python基类object中与运算符有关的特殊方法,那么这些特殊方法对应的运算符将能够对该类的实例进行运算  
+- `+`特殊方法`__add__()`
+- `-`特殊方法`__sub__()`
+- `*`特殊方法`__mul__()`
+- `/`特殊方法`__truediv__()`
+- `%`特殊方法`__mod__()`
+- `**`特殊方法`__pow__()`
+- `in`特殊方法`__contains__()`
+- `==`特殊方法`__eq__()`  
+`!=`特殊方法`__ne__()`  
+`<`特殊方法`__lt__()`  
+`<=`特殊方法`__le__()`  
+`>`特殊方法`__gt__()`  
+`>=`特殊方法`__ge__()`  
+- `&`特殊方法`__and__()`  
+`|`特殊方法`__or__()`  
+`~`特殊方法`__invert__()`  
+`^`特殊方法`__xor__()`
+- `+=`特殊方法`__iadd__()`  
+`-=`特殊方法`__isub__()`  
+`*`特殊方法`__imul__()`  
+`/=`特殊方法`__itruediv__()`
 
 # 第9章 异常
 ## 1.异常概述
+- 异常是在程序运行期间出现的错误、意外或不正常情况，可能是由外部环境、不正确的输入、无效的操作或其他因素引起的
+- 异常信息包含异常代码所在行号、异常的类型、异常产生的原因等
+- BaseException类是所有异常类的基类,它派生了4个子类,分别是Exception、KeyboardInterrupt、GeneratorExit和SystemExit。其中 Exception是所有内置的、非系统退出的异常的基类; KeyboardInterrupt是用户中断执行时会产生的异常;GeneratorExit是生成器退出异常;SystemExit是Python解释器退出异常
+- NameError，使用未定义的变量
+- IndexError，使用超出序列范围的索引
+- AttributeError，使用对象访问不存在的属性或者调用不存在的方法
+- FileNotFindError，未找到指定文件或目录
 ## 2.异常捕获语句
+- try-except语句  
+    ```python
+    try:
+        可能出现异常的代码
+    except[异常类[as 异常信息]]:
+        捕获异常后的处理代码
+    ```
+    ```python
+    try:
+        num one = int(input("请输入被除数: "))
+        num_two = int(input("请输入除数:"))
+        print("结果为", num one / num two)
+    except (ZeroDivisionError, ValueError) as error:
+        print("出错了,原因:", error)
+    ```
+- try-except-else语句
+    ```python
+    try:
+        可能出现异常的代码
+    except [异常类 [as 异常信息]]:
+        捕获异常后的处理代码
+    else:
+        没有异常的处理代码
+    ```
+- try-except-finally语句
+    ```python
+    try:
+        可能出现异常的代码
+    except [异常类型 [as 异常信息]]:
+        捕获异常后的处理代码
+    finally:
+        一定会执行的代码
+    ```
 ## 3.抛出异常
+- 使用raise语句抛出异常  
+`raise 异常类`，抛出该语句中异常类对应的异常  
+`raise 异常类对象`，抛出该语句中异常类对象对应的异常  
+`raise `，重新抛出异常
+- 使用assert语句抛出异常  
+assert语句又称为断言语句,用于在程序运行过程中检查某些条件是否满足。如果条件不满足, assert语句会抛出一个Assertion Error异常以中断程序的执行  
+`assert 表达式[, 异常信息]`  
+assert语句主要用于开发和调试阶段
+    ```python
+    num_one = int(input("请输入被除数:"))
+    num_two = int(input("请输入除数:"))
+    assert num_two != 0, '除数不能为0'
+    result = num_one / num_two
+    print(num_one, '/', num_two, '=', result)
+    ```
+- 异常的传递
+```python
+def get_width():
+    """获取正方形边长"""
+    print("get_width()开始执行")
+    num = int(input("请输入除数:"))
+    width_len = 10 / num  # 此行代码在num为0时会出现异常，没有找到处理语句，向上传递给calc_area()
+    print("get_width()执行结束")
+    return width_len
+def calc_area():  # 异常传递到该函数，没有找到处理语句，向上传递给show_area()
+    """计算正方形面积"""
+    print("calc_area()开始执行")
+    width_len = get_width()
+    print("calc_area()执行结束")
+    return width_len * width_len
+def show_area():  # except语句捕获到由calc_area()函数传递来的异常，执行except语句
+    """输出正方形面积"""
+    try:
+        print("show_area()开始执行")
+        area_val = calc_area()
+        print (f"正方形的面积是: {area_val}")
+        print ("show_area() 执行结束")
+    except ZeroDivisionError as e:
+        print (f"捕获到异常:{e}")
+show_area()
+```
 ## 4.自定义异常
+- 创建一个继承Exception类或Exception子类的类即可，类名一般“Error”结尾
+```python
+class ShortInputError(Exception):
+    def __init__(self, length, atleast):
+        self.length = length
+        self.atleast = atleast
+try:
+    text = input("请输入密码:")
+    if len(text) < 3:
+        raise ShortInputError(len(text), 3)
+except ShortInputError as result:
+    print(f"ShortInputError:输入的长度是{result.length},长度至少应是{result.atleast}")
+else:
+    print("密码设置成功")
+```
 
 # 第10章 Python计算生态与常用库
 ## 1.Python计算生态概览
+- 网络爬虫  
+按照一定的规则，自动从网络上抓取信息的程序或脚本  
+涉及HTTP请求、Web信息提取、网页数据解析等操作  
+Request、Selenium、re、Beautiful Soup、Scrapy、pysrider
+- 数据分析  
+使用各种统计和计算方法对数据进行整理、转化、分析和解释的过程  
+NumPy、pandas、SciPy
+- 文本处理  
+对文本内容的处理,包括文本内容的分类、文本特征的提取、文本内容的转换等  
+jieba库、NLTK库、PyPDF库、python-docx库
+- 数据可视化  
+关于数据视觉表现形式的学科,它既需要有效传达数据信息,也需要兼顾信息传达的美学形式  
+Matplotlib、seaborn、pyecharts
+- 机器学习  
+涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等,其主要研究计算机如何模拟或实现人类的学习行为,并通过获取新的知识与技能以及重新组织已有知识结构来不断改善自身的性能和行为  
+scikit-learn、TensorFlow、PyTorch
+- 图形用户界面(Graphical User Interface,GUI)  
+采用图形化方式展示和操作的用户界面,该界面允许用户使用鼠标、键盘等输入设备操纵屏幕上的图标或菜单选项等,以选择命令、调用文件、启动程序或完成一些其他的日常任务  
+PyQt5、wxPython、PyGObject
+- Web开发  
+开发网站、Web应用程序及互联网相关平台的技术,它涉及前端(用户界面)、后端(服务器逻辑)和数据库开发,并关注安全性和性能优化等方面  
+Django、Tornado、Flask、Twisted
+- 网络应用开发  
+网络为基础的应用程序的开发  
+WeRoBot、baidu-aip、MyQR
+- 游戏开发  
+pygame、panda3D
+- 图形开发  
+使用视觉元素、图形和图像来创造艺术作品的行为,它包括绘画、平面设计、数码艺术、动画、雕塑等各种形式  
+quads、art、turtle
+- 图像处理  
+利用计算机算法和技术对图像进行分析、增强、重建和理解的技术,涉及图像增强、滤波、压缩、特征提取、图像分割、目标检测和识别、图像重建等任务  
+NumPy、SciPy、Pillow、OpenCV-Python
 ## 2.Python生态库的构建与发布
+- 模块的构建与使用  
+模块本质是一个包含Python代码片段的.py文件，模块的名称就是文件的名称  
+通过import语句或者from-import语句导入模块  
+测试代码  
+__name__变量。在模块中对__name__变量的取值进行判断:当__name__的取值为'main'时,说明模块以脚本的形式执行;否则说明模块被导入其他程序  
+```python
+# 功能代码
+def add(a, b):
+    returna+b
+# 测试代码
+if __name__ == '__main__':  # 判断__name__变量是否等于'__main__'
+    result = add(22, 33)
+    print(f'function test:{a}+{b}={result}')
+```
+- 包的构建与导入  
+Python中的包是一个目录,该目录中包含一组相关的模块和子包  
+为了构建一个包,需要在目录中创建一个名为__init__.py的文件,这个文件可以是空的,也可以包含一些初始化代码
+- 生态库的发布  
+(1)在与待发布的包同级的目录中创建setup.py文件  
+(2)编辑setup.py文件,在该文件中设置包中包含的模块  
+(3)在setup.py文件所在目录下打开命令提示符窗口,使用Python命令构建Python库，`python setup.py build`
+(4)在setup.py文件所在目录下打开命令提示符窗口,使用Python命令创建库的安装包，`python set_up sdist`
+
 ## 3.常见的内置库
+- time库  
+`time()`  
+`localtime()`和`gmtime()`  
+`strftime()`和`asctime()`  
+`ctime()`  
+`strptime()`
+`sleep()`  
+- rodam库  
+- trutle库  
+创建图形窗口  
+设置画笔  
+绘制图形  
 ## 4.常用的第三方库
+- jieba库  
+- wordcloud库  
+- Pygame库  
+Pygame的初始化与卸载  
+创建图形窗口  
+游戏循环与游戏时钟  
+图形和文本绘制  
+元素位置控制  
+动态效果  
+事件与事件处理
