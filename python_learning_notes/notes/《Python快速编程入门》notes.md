@@ -412,12 +412,12 @@ interable:表示可迭代对象
     center_str = sentence.center(13,'-')  # 字符串长度为13，居中显示，使用-填充
     ljust_str = sentence.ljust(13, '*')  # 字符串长度为13，左对齐，使用*填充
     rjust_str = sentence.rjust(13, '%')  # 字符串长度为13，右对齐，使用%填充
-    print (f"居中显示:{center_str}")
-    print (f"左对齐显示: {ljust_str}")
-    print (f"右对齐显示: {rjust_str}")
+    print(f"居中显示:{center_str}")
+    print(f"左对齐显示:{ljust_str}")
+    print(f"右对齐显示:{rjust_str}")
     ```
 - f-string方法对齐  
-{s:<5}，左对齐长度到5，右边字符  
+{s:<5}，左对齐长度到5，右边补字符  
 {s:>5}，右对齐长度到5，左边补字符  
 {s:^5}，居中对齐长度到5，两边补字符  
 {s:-<5}，右边补指定字符“-”长度到5  
