@@ -50,16 +50,110 @@ def search():
     print("未找到信息，可能输入错误或未添加该学生")
 
 
-# def modify():
+def modify():
+    """修改学生信息"""
+    stu_data = load_data()
+    
+    stu_id = input("请输入要修改的学生学号：")
+    
+    if stu_id in stu_data:
+        info = stu_data[stu_id]
+        print(f"""原信息：
+              学号：{stu_id} 姓名：{info['姓名']} 专业：{info['专业']}""")
+        
+        name = input(f"新姓名（{stu_data[stu_id]['姓名']}）：")
+        if name:
+            stu_data[stu_id]['姓名'] = name
+        sex = input(f"新性别（{stu_data[stu_id]['性别']}）：")
+        if sex:
+            stu_data[stu_id]['性别'] = sex
+        major = input(f"新专业（{stu_data[stu_id]['专业']}）：")
+        if major:
+            stu_data[stu_id]['专业'] = major
+        save_data(stu_data)
+        print("修改成功！")
+    else:
+        print("学号不存在！")
 
 
-# def delete():
+def delete():
+    """删除学生信息"""
+    stu_data = load_data()
+
+    stu_id = input("请输入要删除的学生学号：")
+
+    if stu_id in stu_data:
+        info = stu_data[stu_id]
+        print(f"学号：{stu_id} 姓名：{info['姓名']} 专业：{info['专业']}")
+        confirm = input("确认删除？(y/n)：")
+        if confirm.lower() == 'y':
+            del stu_data[stu_id]
+            save_data(stu_data)
+            print("删除成功！")
+        else:
+            print("已取消删除")
+    else:
+        print("学号不存在！")
 
 
-# def sort():
+def sorting():
+    """排序（按学号/姓名/专业）"""
+    stu_data = load_data()
+    
+    if not stu_data:
+        print("暂无学生数据")
+        return
+    
+    print("排序方式：")
+    print("1. 按学号")
+    print("2. 按姓名")
+    print("3. 按专业")
+    
+    choice = input("请选择：")
+    
+    items = list(stu_data.items())  # [(学号, 信息), ...]
+    
+    if choice == '1':
+        # 按学号排序
+        items.sort(key=lambda x: x[0])
+        print("按学号排序结果：")
+    elif choice == '2':
+        # 按姓名排序
+        items.sort(key=lambda x: x[1]['姓名'])
+        print("按姓名排序结果：")
+    elif choice == '3':
+        # 按专业排序
+        items.sort(key=lambda x: x[1]['专业'])
+        print("按专业排序结果：")
+    else:
+        print("无效选择")
+        return
+    
+    # 显示结果
+    for stu_id, info in items:
+        print(f"{stu_id} {info['姓名']} {info['专业']} {info['性别']}")
 
 
-# def count():
+def count():
+    """统计学生信息"""
+    stu_data = load_data()
+    
+    if not stu_data:
+        print("暂无学生数据")
+        return
+    
+    total = len(stu_data)
+    print(f"学生总人数：{total}")
+    
+    # 按专业统计
+    major_count = {}
+    for info in stu_data.values():
+        major = info['专业']
+        major_count[major] = major_count.get(major, 0) + 1
+    
+    print("\n各专业人数：")
+    for major, num in major_count.items():
+        print(f"  {major}：{num}人")
 
 
 def show():
@@ -80,5 +174,5 @@ def show():
 
 if __name__ == "__main__":
     print("测试show()函数")
-    search()
+    sorting()
     print("测试完成")

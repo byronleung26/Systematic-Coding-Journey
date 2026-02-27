@@ -4,7 +4,7 @@
 日期：2026-02-26
 """
 
-from student_operations import insert, search, show
+from student_operations import insert, search, modify, delete, sorting, count, show
 
 def menu():
     """功能菜单"""
@@ -36,20 +36,16 @@ def main():
                 search()
                 input("按回车继续")
             elif choice == '3':
-                print("修改学生信息")
-                # modify()
+                modify()
                 input("按回车继续")
             elif choice == '4':
-                print("删除学生信息")
-                # delete()
+                delete()
                 input("按回车继续")
             elif choice == '5':
-                print("排序")
-                # sort()
+                sorting()
                 input("按回车继续")
             elif choice == '6':
-                print("统计")
-                # count()
+                count()
                 input("按回车继续")
             elif choice == '7':
                 show()
