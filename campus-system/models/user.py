@@ -4,5 +4,3 @@ class User():
         self.username = username
         self.password = password
         self.role = role
-    def verify_pwd(self, pwd):
-        self.verify_pwd = pwd

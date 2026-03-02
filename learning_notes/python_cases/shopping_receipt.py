@@ -1,12 +1,15 @@
 pricedict = {
-    "apple": 6,
-    "banana": 3.3,
-    "chips": 10,
-    "glove": 15.5,
+    "苹果": 6,
+    "香蕉": 3.3,
+    "薯片": 10,
+    "手套": 15.5,
 }
 subtotal = []
 items = []
 while True:
+    print("商品价格表")
+    for i in pricedict:
+        print(f"{i}: {pricedict[i]}元")
     merchandise = input("请输入商品名(直接Enter退出)：")
     if not merchandise:
         break

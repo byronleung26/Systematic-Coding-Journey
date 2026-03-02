@@ -1,26 +1,19 @@
 # Python-Project-Collection
-My Python learning projects
+Systematic-Coding-Journey
 
 # 目录结构
-├───algorithms/  # 算法学习代码  
+Systematic-Coding-Journey/  
 │  
-├───campus-system/  # 校园信息系统  
+├───learning_notes/
+│  ├──algorithms/  
+│  ├──cpp/  
+│  └──python/  
 │  
-├───simple_five_in_a_raw/  # 简易五子棋  
+├───campus-system/  # (待完成)  
 │  
-├───python_learning_notes/  # 学习笔记  
-│  ├──01_introduction/  
-│  ├──02_variable_string_number/  
-│  ├──03_list/  
-│  ├──04_working_with_list/  
-│  ├──05_if_statements/  
-│  ├──06_dictionary/  
-│  ├──07_while_loops/  
-│  ├──08_functions/  
-│  ├──09_practices/  
-│  ├──insight.md  # 感悟与收获  
-│  ├──notes.md  # 知识点记录  
-│  └──practice.md  # 实践记录  
+├───simple_five_in_a_raw/  # v1.0  
+│  
+├───student-information-system/  # v1.0  
 │  
 ├───.gitignore  
 ├───LICENSE  
@@ -31,5 +24,9 @@ My Python learning projects
 
 # 2026-02
 开始学习算法  
-完成项目：五子棋v0.1  
-开始项目：校园系统v0.1  
+完成项目：五子棋v1.0  
+开始项目：校园系统v1.0  
+完成项目：学生信息管理系统v1.0  
+
+# 2026-03
+C++语法学习
