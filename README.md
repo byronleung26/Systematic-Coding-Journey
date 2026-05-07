@@ -4,12 +4,13 @@ Systematic-Coding-Journey，记录我的系统性编程学习过程
 # 目录结构
 Systematic-Coding-Journey/  
 │  
-├───learning_notes/
+├───01_learning_notes/  
 │  ├──algorithms/  
 │  ├──cpp/  
 │  ├──Web-Dev-learning.html  
-│  ├──Computer-Science-An-Overview_notes.md  
-│  └──python/  
+│  ├──Computer-Science-Introduction.md  
+│  ├──C/  
+│  └──Python/  
 │  
 ├───oa-system/  # 办公自动化系统(待完成)  
 │  
@@ -26,7 +27,7 @@ Systematic-Coding-Journey/
 │  ├──student_operations.py  
 │  └──README.md  
 │  
-├───repair/  # 手机/电脑维修  
+├───phone-repair-simulator/  # 手机维修模拟器(规划中)  
 │  
 ├───.gitignore  
 ├───LICENSE  
@@ -40,8 +41,12 @@ Python基础语法学习
 完成项目：五子棋v1.0  
 完成项目：学生信息管理系统v1.0  
 
-# 2026-03
+# 2026-03/04
 前端技术学习  
 离散数学学习  
 C++程序设计学习  
 互联网技术基础学习
+
+# 2026-05
+C语言学习  
+计算机导论学习
