@@ -84,6 +84,8 @@
 4. 初始化
 - 未初始化的（uninitialized）
 - `int height = 8;`
+- 初始化器（initializer）
+
 
 
 
