@@ -34,7 +34,23 @@
 - 编码规范  
 - 避免“投机取巧“和过度复杂的代码  
 - 紧贴标准  
-# 第2章 C语言基本概念
-## 2.1 一个简单的C程序
 
-## 2.2 
+# 2 C语言基本概念
+## 2.1 一个简单的C程序
+1. 显示双关语  
+    ``` c
+    #include <stdio.h>  //  C语言标准输入/输出库的相关信息，必不可少
+    int main(void)  //  程序的可执行代码都在main主函数中
+    {
+    printf("To C, or not to C: that is the question.\n");  //  用来显示期望信息的。printf函数来自标准输入/输出库，可以产生完美的格式化输出。代码\n告诉printf函数执行完消息显示后要进行换行操作
+    return 0;  //  表明程序终止时会向操作系统返回值 0
+    } 
+    ```  
+2. 编译和链接    
+- 预处理，预处理器（preprocessor）  
+- 编译，编译器（compiler）  
+- 链接，链接器（linker）  
+- `% cc pun.c`  
+3. 集成开发环境  
+集成开发环境（integrated development environment, IDE）  
+## 2.2 指令
