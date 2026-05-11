@@ -46,7 +46,7 @@
     return 0;  //  表明程序终止时会向操作系统返回值 0
     } 
     ```  
-2. 编译和链接    
+2. 编译和链接  
 - 预处理，预处理器（preprocessor），执行以#开头的命令，纯文本替换，输出：.i文件  
 - 编译，编译器（compiler），输出：.s 汇编代码文件  
 - 汇编，汇编器，把汇编指令翻译成机器码（CPU真正能执行的0和1），输出：.o 目标文件  
@@ -56,36 +56,73 @@
 集成开发环境（integrated development environment, IDE）  
 ## 2.2 预处理指令（Preprocessor Directive）
 ## 2.3 函数
-1. 程序员编写的函数
-2. 库函数（library function）
-3. 所有程序都有且只有一个 main 函数
-- int，整数
-- void，没有参数
-- return，函数终止，指定返回值
-4. 函数调用（function call）
+1. 程序员编写的函数  
+2. 库函数（library function）  
+3. 所有程序都有且只有一个 main 函数  
+- int，整数  
+- void，没有参数  
+- return，函数终止，指定返回值  
+4. 函数调用（function call）  
 ## 2.4 语句
-1. 每条语句以;结尾
-2. 字面串（string literal）
-3. 换行符\n
+1. 每条语句以;结尾  
+2. 字面串（string literal）  
+3. 换行符\n  
 ## 2.5 注释（comment）
-1. `/* This is a comment */` 
-2. //，C99，行末自动终止
+1. `/* This is a comment */`   
+2. //，C99，行末自动终止  
 ## 2.6 变量（variable）
-1. 类型（type）
-2. 声明
-- `类型 变量名`
-- 每一条完整的声明都要以分号结尾
-- 把声明放置在语句之前
-- 建议在声明和语句之间留出一个空行
-3. 赋值（assignment）
-- 常量（constant）
-- 把一个包含小数点的常量赋值给 float 型变量时，最好在该常量后面加一个字母 f，`profit = 2.54f`
-- `printf("Height: %d\n", height);`，`printf("Profit: $%.2f\n", profit);`，`printf("Height: %d Length: %d\n", height, length);`
-4. 初始化
-- 未初始化的（uninitialized）
-- `int height = 8;`
-- 初始化器（initializer）
+1. 类型（type）  
+2. 声明  
+- `类型 变量名`  
+- 每一条完整的声明都要以分号结尾  
+- 把声明放置在语句之前  
+- 建议在声明和语句之间留出一个空行  
+3. 赋值（assignment）  
+- 常量（constant）  
+- 把一个包含小数点的常量赋值给 float 型变量时，最好在该常量后面加一个字母 f，`profit = 2.54f`  
+- `printf("Height: %d\n", height);`  
+- `printf("Profit: $%.2f\n", profit);`  
+- `printf("Height: %d Length: %d\n", height, length);`  
+4. 初始化  
+- 未初始化的（uninitialized）  
+- `int height = 8;`  
+- 初始化器（initializer）  
+## 2.7 读入输出
+1. scanf函数  
+- `scanf("%d", &i); /* reads an integer; stores into i */ `  
+- `%d`说明scanf读入的是一个整数  
+- `i`是一个整数型变量  
+- `scanf("%f", &x); /* reads a float value; stores into x */`  
+    ```c
+    #include <stdio.h>
 
+    int main(void)
+    {
+        int height, length, width, volume, weight;
+        printf("Enter height of box: ");
+        scanf("%d", &height);
+        printf("Enter length of box: ");
+        scanf("%d", &length);
+        printf("%d", width);
+        scsnf("%d", width);
 
+        volume = height * length * width;
+        weight = (volume + 165) / 166;
 
+        printf("Volume (cubic inches): %d", volume);
+        printf("Dimensional weight (pounds): %d", weight);
+
+        return 0;
+    }
+    ```
+## 2.8 定义常量的名字
+1. 宏定义（macro definition）  
+2. 用宏定义给常量命名  
+`#define FREEZING_PT 32.0f`  
+3. 利用宏来定义表达式  
+`#define SCALE_FACTOR (5.0f / 9.0f) `  
+4. 宏的名字只用大写字母  
+## 2.8 标识符
+1. 标识符（identifier）
+2. 关键字（keyword）
 

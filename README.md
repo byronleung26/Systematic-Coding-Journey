@@ -10,7 +10,8 @@ Systematic-Coding-Journey/
 │  ├──Web-Dev-learning.html  
 │  ├──Computer-Science-Introduction.md  
 │  ├──C/  
-│  └──Python/  
+│  ├──Python/  
+│  └──repair/  
 │  
 ├───oa-system/  # 办公自动化系统(待完成)  
 │  
