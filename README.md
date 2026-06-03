@@ -15,7 +15,8 @@ Systematic-Coding-Journey/
 │  
 ├───oa-system/  # 办公自动化系统(待完成)  
 |
-├───Tourism-Information-Network/  # 旅游信息网（新坑）
+├───Tourism-Information-Network/  # 旅游信息网（新坑）Vue CLI+axios+ElementPlus+Node.js+Express框架+ MySQL  
+│  └──README.md  
 │  
 ├───five_in_a_raw/  # 五子棋v1.0  
 │  ├──board.py  
