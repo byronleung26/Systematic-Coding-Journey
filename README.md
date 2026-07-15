@@ -1,5 +1,5 @@
 # Introduction
-Systematic-Coding-Journey，记录我的系统性编程学习过程
+Systematic-Coding-Journey  
 
 # 目录结构
 Systematic-Coding-Journey/  
@@ -14,6 +14,9 @@ Systematic-Coding-Journey/
 │  └──repair/  
 │  
 ├───oa-system/  # 办公自动化系统(待完成)  
+|  
+├───sandbox/  
+│  └──README.md  
 |  
 ├───Tourism-Information-Network/  # 旅游信息网（新坑）Vue CLI+axios+ElementPlus+Node.js+Express框架+ MySQL  
 │  └──README.md  
@@ -36,21 +39,3 @@ Systematic-Coding-Journey/
 ├───.gitignore  
 ├───LICENSE  
 └───README.md  
-
-# 2026-01
-Python基础语法学习
-
-# 2026-02
-简单算法学习  
-完成项目：五子棋v1.0  
-完成项目：学生信息管理系统v1.0  
-
-# 2026-03/04
-前端技术学习  
-离散数学学习  
-C++程序设计学习  
-互联网技术基础学习
-
-# 2026-05
-C语言学习  
-计算机导论学习
